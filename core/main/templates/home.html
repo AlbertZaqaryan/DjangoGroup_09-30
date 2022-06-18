@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DjangoProject</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <a href="/logout">Logout {{ user.username }} </a>
+        <a href="{% url 'user' %}"><Button>GO TO USER PAGE</Button></a>
+    {% else %}
+        <a href="{% url 'login' %}"><Button>LOGIN</Button></a>
+        <a href="{% url 'register' %}"><Button>REGISTER</Button></a>
+    {% endif %}
+    {% for i in mycategories %}
+        <h1>{{ i.name }}</h1>
+        <img src="{{ i.img }}" width="300px" alt="">
+        <p>{{ i.about }}</p>
+        <h3>{{ i.price }} Դրամ</h3>
+    {% endfor %}
+</body>
+</html>
