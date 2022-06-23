@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% load crispy_forms_tags %}
+{% extends 'base.html' %}
+{% block content %}
+  {% load crispy_forms_tags %}
 
-<div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-  <p class="text-center">Don't have an account? <a href="{% url 'register' %}"><Button>Create an account</Button></a>.</p>
-</div>
-    <a href="{% url 'home' %}"><Button>GO TO HOME PAGE</Button></a>
-</body>
-</html>
+  <div class="container py-5">
+    <h1>Login</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ login_form|crispy }}
+      <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="{% url 'register' %}"><Button>Create an account</Button></a>.</p>
+  </div>
+      <a href="{% url 'home' %}"><Button>GO TO HOME PAGE</Button></a>
+{% endblock %}
 
 

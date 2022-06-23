@@ -4,6 +4,7 @@ from .forms import NewUserForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
@@ -44,14 +45,17 @@ def logout_request(request):
 
 
 
+class HomeListView(ListView):
+	template_name = 'home.html'
 
-def home(request):
-    mycategories = Category.objects.all()
-    context = {
-        'mycategories':mycategories
-    }
-    return render(request, 'home.html', context)
+	def get(self, request):
+		mycategories = Category.objects.all()
+		return render(request, self.template_name, {'mycategories':mycategories})
 
 
-def user(request):
-    return render(request, 'user.html')
+class HomeDetailView(DetailView):
+	template_name = 'home_detail.html'
+
+	def get(self, request, id):
+		x = Category.objects.get(pk=id)
+		return render(request, self.template_name, {'x':x})

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DjangoProject</title>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}"><Button>HOME</Button></a>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a href="/logout">Logout {{ user.username }} </a>
+        </li>
+        {% else %}
+  
+        <li class="nav-item">
+            <a href="{% url 'login' %}"><Button>LOGIN</Button></a>
+            <a href="{% url 'register' %}"><Button>REGISTER</Button></a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <hr>
+
+  </nav>
+</head>
+<body>
+    
+    {% block content %}{% endblock %}
+
+</body>
+
+<footer>
+    <hr>
+    <ul>
+    <li>About us</li>
+    <li>Home</li>
+    <li>Contact us</li>
+    <li>+374999999</li>
+    <li>Botas</li>
+</ul>
+</footer>
+
+</html>
