@@ -5,10 +5,14 @@
 
 <div>
     {% for i in mycategories %}
-        <h1>{{ i.name }}</h1>
-        <a href="{% url 'home_detail' i.id %}"><img src="{{ i.img.url }}" width="300px" alt=""></a>
-        <p>{{ i.about }}</p>
-        <h3>{{ i.price }} Դրամ</h3>
+        {% if i.is_public %}
+            <h1>{{ i.name }}</h1>
+            {% for j in i.bagcat.all %}
+                <a href="{% url 'home_detail' j.id %}"><img src="{{ j.img.url }}" width="300px" alt=""></a>
+                <p>{{ j.about }}</p>
+                <h3>{{ j.price }} Դրամ</h3>
+            {% endfor %}
+        {% endif %}
     {% endfor %}
     </div>
 
